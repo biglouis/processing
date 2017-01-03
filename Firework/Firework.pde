@@ -1,7 +1,6 @@
 import peasy.*;
 
 ArrayList<Fireworks> fireworks;
-
 PVector gravity = new PVector(0, 0.001, -0.1);
 int r = 400;
 
@@ -33,7 +32,6 @@ void draw() {
   vertex(r, -r, 0);
   vertex(-r, -r, 0);
   endShape(CLOSE);
-
 
   for (int i = fireworks.size()-1; i >= 0; i--) {
     Fireworks f = fireworks.get(i);

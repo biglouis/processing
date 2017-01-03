@@ -1,28 +1,39 @@
+/**
+ * Diese Klasse bildet einen Funken ab.
+ *
+ * @author Torsten Pattberg (torsten.pattberg@biglouis.com)
+ */
 class Spark extends Particle{
   private float lifespan;
   private float hu;
 
   /**
-   * TODO
+   * Konstruktor.
+   *
+   * @param p Position
+   * @param v Geschwindigkeit
+   * @param hu Farbe
    */
-  Spark(PVector l, PVector v, float hu) {
-    super(l, v);
+  public Spark(PVector p, PVector v, float hu) {
+    super(p, v);
     this.hu = hu;
+    
+    // Zufällige Lebensdauer
     this.lifespan = random(255);
     
     // Zufällig in irgendeine Richtung starten
     PVector f = PVector.random3D();
     
     // Zufällig mit irgendeiner Geschwindigkeit starten
-    f.mult(random(8,10));
+    f.mult(random(8, 10));
 
     this.applyForce(f);    
   }
 
   /**
-   * TODO
+   * Physik auf den Funken anwenden.
    */
-  void update() {
+  private void update() {
     // Ein bisschen Wind simulieren
     PVector f = PVector.random3D();
     f.mult(map(this.lifespan, 255, 0, 0, random(0.8)));
@@ -32,25 +43,28 @@ class Spark extends Particle{
     this.velocity.mult(0.96);
     super.update();
     
+    // Behandlung an der Grundfläche
     if ((this.position.z < 0) 
      && (this.position.x > -r)
      && (this.position.y > -r)
      && (this.position.x < r)
      && (this.position.y < r)
-     ){
+     )
+    {
       this.position.z = 0;
       this.velocity.z *=-1;
     }
   }
 
   /**
-   * TODO
+   * Den Funken anzeigen.
    */
-  void display() {
+  private void display() {
+    
     // Damit es schön funkelt
     float size = random(1, map(this.lifespan, 0, 255, 1, 10)); 
     float bright = map(sqrt(random(1)), 0, 1, 0, 255);
-    float hue = (this.hu+random(-10,10))%256;
+    float hue = (this.hu+random(-10, 10)) % 256;
     float alpha = this.lifespan;
     stroke(hue, bright, 255, alpha);
     strokeWeight(size);
@@ -58,7 +72,15 @@ class Spark extends Particle{
   }
 
   /**
-   * Is the spark still useful?
+   * TODO Warum kann "Fireworks" hierauf zurückgreifen, obwohl die Methode "private" ist?
+   */
+  private void run() {
+    this.update();
+    this.display();
+  }
+
+  /**
+   * Lebt der Funken noch?
    */
   private boolean isDead() {
     return (this.lifespan < 0.0);

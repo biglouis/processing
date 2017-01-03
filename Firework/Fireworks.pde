@@ -1,13 +1,13 @@
 class Fireworks {
 
   // Das Feuerwerk bekommt eine zufällige Farbe
-  float hu = random(255);
+  private float hu = random(255);
 
   // Die Rakete startet in der Ecke unserer Fläche
-  Rocket rocket = new Rocket(-r, -r, this.hu);
+  private Rocket rocket = new Rocket(-r, -r, this.hu);
 
   // Zu Beginn existieren noch keine Funken
-  ArrayList<Spark> sparks = new ArrayList<Spark>();    
+  private ArrayList<Spark> sparks = new ArrayList<Spark>();    
   
   /**
    * Fügt dem Feuerwerk "Funken" hinzu.
@@ -17,7 +17,7 @@ class Fireworks {
    * @param v Geschwindigkeit
    * @param h Farbe
    */
-  void addSparks(float s, PVector p, PVector v, float h){
+  private void addSparks(float s, PVector p, PVector v, float h){
     for (int i = 0; i < s; i++) {
       this.sparks.add(new Spark(p, v, h));    
     }

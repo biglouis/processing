@@ -1,10 +1,15 @@
+/**
+ * Diese Klasse bildet eine Rakete ab.
+ *
+ * @author Torsten Pattberg (torsten.pattberg@biglouis.com)
+ */
 class Rocket extends Particle{
   private float hu;
 
   /**
    * TODO
    */
-  Rocket(float x, float y, float hu) {
+  public Rocket(float x, float y, float hu) {
     super(x, y);
 
     this.velocity = new PVector(random(-1, 6), random(-1, 6), random(6, 16));    
@@ -14,7 +19,7 @@ class Rocket extends Particle{
   /**
    * TODO
    */
-  void update() {
+  private void update() {
     super.update();
     
     if ((this.position.z < 0) 
@@ -31,16 +36,24 @@ class Rocket extends Particle{
   /**
    * TODO
    */
-  boolean explode() {
+  private boolean explode() {
     return ((this.velocity.z < 0) && (random(1) < 0.05));
   }
 
   /**
    * TODO
    */
-  void display() {
+  private void display() {
     stroke(this.hu, 255, 100);
     strokeWeight(10);
     point(this.position.x, this.position.y, this.position.z);
   }
+  
+  /**
+   * TODO
+   */
+  public void run() {
+    this.update();
+    this.display();
+  }  
 }
