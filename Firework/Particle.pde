@@ -13,7 +13,7 @@ class Particle {
   /**
    * Konstruktor, der ein Objekt im Ursprung anlegt.
    */
-  public Particle() {
+  Particle() {
     this(0, 0);
   }
 
@@ -23,7 +23,7 @@ class Particle {
    * @param x  x-Koordinate
    * @param y  y-Koordinate
    */
-  public Particle(float x, float y) {
+  Particle(float x, float y) {
     this(x, y, 0);
   }
 
@@ -34,7 +34,7 @@ class Particle {
    * @param y  y-Koordinate
    * @param z  z-Koordinate
    */
-  public Particle(float x, float y, float z) {
+  Particle(float x, float y, float z) {
     this(new PVector(x, y, z));
   }
 
@@ -43,7 +43,7 @@ class Particle {
    *
    * @param p  Position
    */
-  public Particle(PVector p) {
+  Particle(PVector p) {
     this(p, new PVector(0, 0, 0));
   }
 
@@ -54,7 +54,7 @@ class Particle {
    * @param p  Position
    * @param v  Geschwindigkeit
    */
-  public Particle(PVector p, PVector v) {
+  Particle(PVector p, PVector v) {
     this.position =  p.copy();
     this.velocity = v.copy();
     this.acceleration = new PVector(0, 0, 0);
@@ -65,14 +65,14 @@ class Particle {
    *
    * @param f  Kraft
    */
-  protected void applyForce(PVector f) {
+  void applyForce(PVector f) {
     acceleration.add(f);
   }
 
   /**
    * Physik auf das Teil anwenden.
    */
-  private void update() {
+  void update() {
     // Die Beschleunigung ändert die Geschwindigkeit
     this.velocity.add(acceleration);
 

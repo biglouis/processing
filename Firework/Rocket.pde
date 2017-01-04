@@ -9,7 +9,7 @@ class Rocket extends Particle{
   /**
    * TODO
    */
-  public Rocket(float x, float y, float h) {
+  Rocket(float x, float y, float h) {
     super(x, y);
 
     this.velocity = new PVector(random(-1, 6), random(-1, 6), random(6, 16));    
@@ -19,7 +19,7 @@ class Rocket extends Particle{
   /**
    * TODO
    */
-  private void update() {
+  void update() {
     super.update();
     
     if ((this.position.z < 0) 
@@ -39,24 +39,16 @@ class Rocket extends Particle{
    *
    * @return TRUE/FALSE
    */
-  private boolean explode() {
+  boolean explode() {
     return ((this.velocity.z < 0) && (random(1) < 0.05));
   }
 
   /**
    * TODO
    */
-  private void display() {
+  void display() {
     stroke(this.hu, 255, 100);
     strokeWeight(10);
     point(this.position.x, this.position.y, this.position.z);
   }
-  
-  /**
-   * TODO
-   */
-  public void run() {
-    this.update();
-    this.display();
-  }  
 }

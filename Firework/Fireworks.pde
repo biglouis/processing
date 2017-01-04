@@ -14,7 +14,7 @@ class Fireworks {
    * @param v Geschwindigkeit
    * @param h Farbe
    */
-  private void addSparks(float s, PVector p, PVector v, float h){
+  void addSparks(float s, PVector p, PVector v, float h){
     for (int i = 0; i < s; i++) {
       this.sparks.add(new Spark(p, v, h));    
     }
@@ -23,10 +23,11 @@ class Fireworks {
   /**
    * TODO
    */
-  private void runRocket(){
+  void runRocket(){
     if (this.rocket != null) {
       this.rocket.applyForce(gravity);
-      this.rocket.run();
+      this.rocket.update();
+      this.rocket.display();
 
       if (this.rocket.explode()) {
         this.addSparks(random(1000, 3000), this.rocket.position, this.rocket.velocity, this.rocket.hu);
@@ -38,11 +39,12 @@ class Fireworks {
   /**
    * TODO
    */
-  private void runSparks(){
+  void runSparks(){
     for (int i = this.sparks.size()-1; i >= 0; i--) {
       Spark s = this.sparks.get(i);
       s.applyForce(gravity);
-      s.run();
+      s.update();
+      s.display();
       
       // Ein paar Fehlzündungen simulieren
      if (random(1) < 0.00001) {
@@ -58,7 +60,7 @@ class Fireworks {
   /**
    * TODO
    */
-  private void run() {
+  void run() {
     this.runRocket();
     this.runSparks();
   }
@@ -66,7 +68,7 @@ class Fireworks {
   /**
    * TODO
    */
-  private boolean isDead() {
+  boolean isDead() {
     return ((this.rocket == null) && (this.sparks.isEmpty()));
   }
 }

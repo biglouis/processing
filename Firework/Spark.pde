@@ -14,7 +14,7 @@ class Spark extends Particle{
    * @param v Geschwindigkeit
    * @param hu Farbe
    */
-  public Spark(PVector p, PVector v, float h) {
+  Spark(PVector p, PVector v, float h) {
     super(p, v);
     this.hu = h;
     
@@ -33,7 +33,7 @@ class Spark extends Particle{
   /**
    * Physik auf den Funken anwenden.
    */
-  private void update() {
+  void update() {
     
     // Ein bisschen Wind simulieren, je später desto mehr.
     PVector f = PVector.random3D();
@@ -60,7 +60,7 @@ class Spark extends Particle{
   /**
    * Den Funken anzeigen.
    */
-  private void display() {
+  void display() {
     
     // Damit es schön funkelt
     float bright = map(sqrt(random(1)), 0, 1, 0, 255);
@@ -73,19 +73,10 @@ class Spark extends Particle{
     
     point(this.position.x, this.position.y, this.position.z);
   }
-
-  /**
-   * TODO Warum kann "Fireworks" hierauf zurückgreifen, obwohl die Methode "private" ist?
-   */
-  private void run() {
-    this.update();
-    this.display();
-  }
-
   /**
    * Lebt der Funken noch?
    */
-  private boolean isDead() {
+  boolean isDead() {
     return (this.lifespan < 0.0);
   }
 }
