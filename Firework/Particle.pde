@@ -65,8 +65,8 @@ class Particle {
    *
    * @param f  Kraft
    */
-  protected void applyForce(PVector force) {
-    acceleration.add(force);
+  protected void applyForce(PVector f) {
+    acceleration.add(f);
   }
 
   /**

@@ -14,9 +14,9 @@ class Spark extends Particle{
    * @param v Geschwindigkeit
    * @param hu Farbe
    */
-  public Spark(PVector p, PVector v, float hu) {
+  public Spark(PVector p, PVector v, float h) {
     super(p, v);
-    this.hu = hu;
+    this.hu = h;
     
     // Zufällige Lebensdauer
     this.lifespan = random(255);
@@ -34,7 +34,8 @@ class Spark extends Particle{
    * Physik auf den Funken anwenden.
    */
   private void update() {
-    // Ein bisschen Wind simulieren
+    
+    // Ein bisschen Wind simulieren, je später desto mehr.
     PVector f = PVector.random3D();
     f.mult(map(this.lifespan, 255, 0, 0, random(0.8)));
     this.applyForce(f);    
@@ -62,12 +63,14 @@ class Spark extends Particle{
   private void display() {
     
     // Damit es schön funkelt
-    float size = random(1, map(this.lifespan, 0, 255, 1, 10)); 
     float bright = map(sqrt(random(1)), 0, 1, 0, 255);
     float hue = (this.hu+random(-10, 10)) % 256;
     float alpha = this.lifespan;
     stroke(hue, bright, 255, alpha);
+
+    float size = random(1, map(this.lifespan, 0, 255, 1, 10)); 
     strokeWeight(size);
+    
     point(this.position.x, this.position.y, this.position.z);
   }
 

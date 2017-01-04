@@ -1,10 +1,7 @@
 class Fireworks {
 
-  // Das Feuerwerk bekommt eine zufällige Farbe
-  private float hu = random(255);
-
-  // Die Rakete startet in der Ecke unserer Fläche
-  private Rocket rocket = new Rocket(-r, -r, this.hu);
+  // Die Rakete startet in der Ecke unserer Fläche in einer zufälligen Farbe
+  private Rocket rocket = new Rocket(-r, -r, random(255));
 
   // Zu Beginn existieren noch keine Funken
   private ArrayList<Spark> sparks = new ArrayList<Spark>();    
@@ -32,7 +29,7 @@ class Fireworks {
       this.rocket.run();
 
       if (this.rocket.explode()) {
-        this.addSparks(random(1000, 3000), this.rocket.position, this.rocket.velocity, this.hu);
+        this.addSparks(random(1000, 3000), this.rocket.position, this.rocket.velocity, this.rocket.hu);
         this.rocket = null;
       }
     }

@@ -9,11 +9,11 @@ class Rocket extends Particle{
   /**
    * TODO
    */
-  public Rocket(float x, float y, float hu) {
+  public Rocket(float x, float y, float h) {
     super(x, y);
 
     this.velocity = new PVector(random(-1, 6), random(-1, 6), random(6, 16));    
-    this.hu = hu;
+    this.hu = h;
   }
 
   /**
@@ -34,7 +34,10 @@ class Rocket extends Particle{
   }
 
   /**
-   * TODO
+   * Gibt zurück, ob die Rakete explodieren SOLL (nicht, ob
+   * die Rakete explodiert IST).
+   *
+   * @return TRUE/FALSE
    */
   private boolean explode() {
     return ((this.velocity.z < 0) && (random(1) < 0.05));
